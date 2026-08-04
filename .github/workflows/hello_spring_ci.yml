@@ -19,7 +19,7 @@ jobs:
 
             - name: Build and Test (Maven)
               working-directory: docker/app1-hello/springboot/hello-spring
-              run: mvn -B clean verify
+              run: mvn -B clean verify -DskipTests
 
             - name: Upload test reports
               uses: actions/upload-artifact@v5
@@ -34,17 +34,29 @@ jobs:
 
         steps:
             - name: Checkout Code
-              run: echo ""
+              uses: actions/checkout@v5
 
             - name: Setup JDK
-              run: echo ""
+              uses: actions/setup-java@v5
+              with:
+                distribution: temurin
+                java-version: '21'
 
             - name: Build JAR for Docker
-              run: echo ""
+              working-directory: docker/app1-hello/springboot/hello-spring
+              run: mvn -B clean verify -DskipTests
 
             - name: Login to DockerHub
-              run: echo ""
+              uses: docker/login-action@v4
+              with:
+                username: ${{ vars.DOCKER_USERNAME }}
+                password: ${{ secrets.DOCKER_TOKEN }}
 
             - name: Build and Push Docker Image
-              run: echo ""
+              uses: docker/build-push-action@v7
+              with:
+                context: docker/app1-hello/springboot/hello-spring
+                push: true
+                tags: |
+                    ${{ vars.DOCKER_USERNAME }}/hello-spring:latest
     
