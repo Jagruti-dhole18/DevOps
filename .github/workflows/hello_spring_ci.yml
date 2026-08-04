@@ -59,5 +59,8 @@ jobs:
                 push: true
                 tags: |
                     ${{ vars.DOCKER_USERNAME }}/hello-spring:latest
+
+
                     
+
     
