@@ -9,7 +9,7 @@ jobs:
 
         steps:
             - name: Checkout Code
-              run: actions/checkout@v4
+              uses: actions/checkout@v5
 
             - name: Setup JDK
               uses: actions/setup-java@v5
@@ -24,7 +24,7 @@ jobs:
             - name: Upload test reports
               uses: actions/upload-artifact@v5
               with:
-                name: test-reporst
+                name: test-reports
                 path: docker/app1-hello/springboot/hello-spring/target/surefire-reports
               
 
