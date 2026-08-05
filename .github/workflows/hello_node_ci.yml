@@ -1,9 +1,12 @@
 name: Second CI
 
 on:
-  push
-    # paths: ""  
-#   workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths: 
+      - "docker/app1-hello/node"  
+  workflow_dispatch:
 
 jobs:
     build-test:
