@@ -1,6 +1,10 @@
 name: Hello Sring Boot App to Docker
 
-on: [push]
+on: 
+  workflow_dispatch:
+  push:
+    paths: 
+      - "docker/app1-hello/springboot/hello-spring"
     # workflow_dispatch
 
 jobs:
