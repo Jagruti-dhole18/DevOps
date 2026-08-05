@@ -1,9 +1,9 @@
 name: Second CI
 
 on:
-  push: 
+  push
     # paths: ""  
-  workflow_dispatch:
+#   workflow_dispatch:
 
 jobs:
     build-test:
